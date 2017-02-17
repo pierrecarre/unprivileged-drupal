@@ -4,6 +4,9 @@ MAINTAINER pierre.carre78@gmail.com
 RUN sed -i "s/\(Listen 80\)/\180/" /etc/apache2/ports.conf &&\
   sed -i "s/\(.*80\)/\180/" /etc/apache2/sites-enabled/000-default.conf
 
+RUN cp /var/www/html/sites/default/default.settings.php /var/www/html/sites/default/settings.php &&\
+  chmod a+w /var/www/html/sites/default/settings.php
+
 RUN chgrp -R 0 /var/run/apache2 &&\
   chmod -R g+rw /var/run/apache2 &&\
   find /var/run/apache2 -type d -exec chmod g+x {} +
